@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_videos_progress', function (Blueprint $table) {
+        Schema::create('user_video_progresses', function (Blueprint $table) {
             $table->id();
             $table->char('title');
             $table->char('subtitle');
@@ -22,10 +22,9 @@ return new class extends Migration
             $table->boolean('coming_soon');
             $table->dateTime('completed_at');
             $table->char('video_url');
-            // $table->foreignId('videos_topic_progess_id')->constrained();
-            // ade problem nanti check balik
+            $table->foreignId('video_topic_progresses_id')->constrained();
             $table->foreignId('videos_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('users_id')->constrained();
             $table->timestamps();
         });
     }
@@ -37,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_videos_progress');
+        Schema::dropIfExists('user_video_progresses');
     }
 };

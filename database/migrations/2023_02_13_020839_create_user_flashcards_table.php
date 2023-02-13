@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
+        Schema::create('user_flashcards', function (Blueprint $table) {
             $table->id();
-            $table->char('bookmarkable_type');
-            $table->morphs('bookmarkable_id');
+            $table->integer('correct_answer');
+            $table->integer('wrong_answer');
+            $table->integer('rememebered');
+            $table->integer('not_remembered');
+            $table->foreignId('flashcard_sets_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->dateTime('completed_at');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookmarks');
+        Schema::dropIfExists('user_flashcards');
     }
 };

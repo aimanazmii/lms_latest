@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
+        Schema::create('quiz_sets', function (Blueprint $table) {
             $table->id();
-            $table->char('bookmarkable_type');
-            $table->morphs('bookmarkable_id');
-            $table->foreignId('user_id')->constrained();
+            $table->char('tittle');
+            $table->foreignId('quiz_topics_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookmarks');
+        Schema::dropIfExists('quiz_sets');
     }
 };

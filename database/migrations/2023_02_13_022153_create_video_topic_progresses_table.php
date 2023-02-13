@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
+        Schema::create('video_topic_progresses', function (Blueprint $table) {
             $table->id();
-            $table->char('bookmarkable_type');
-            $table->morphs('bookmarkable_id');
-            $table->foreignId('user_id')->constrained();
+            $table->dateTime('completed_at');
+            $table->foreignId('video_topics_id')->constrained();
+            $table->foreignId('users_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookmarks');
+        Schema::dropIfExists('video_topic_progresses');
     }
 };

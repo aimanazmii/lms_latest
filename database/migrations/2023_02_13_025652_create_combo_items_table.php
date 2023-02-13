@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('video_topics', function (Blueprint $table) {
+        Schema::create('combo_items', function (Blueprint $table) {
             $table->id();
             $table->char('title');
-            $table->integer('position');
-            $table->foreignId('course_id')->constrained();
+            $table->text('descriptions');
+            $table->decimal('price',5 ,2);
+            $table->foreignId('users_id')->constrained();
+            $table->char('comboable_type');
+            $table->morphs('comboable_id');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_topics');
+        Schema::dropIfExists('combo_items');
     }
 };

@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookmarks', function (Blueprint $table) {
+        Schema::create('workshops', function (Blueprint $table) {
             $table->id();
-            $table->char('bookmarkable_type');
-            $table->morphs('bookmarkable_id');
-            $table->foreignId('user_id')->constrained();
+            $table->char('title');
+            $table->text('descriptions');
+            $table->decimal('price',5 ,2);
+            $table->foreignId('users_id')->constrained();
+            $table->foreignId('checkout_items_id')->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookmarks');
+        Schema::dropIfExists('workshops');
     }
 };

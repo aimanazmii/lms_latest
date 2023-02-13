@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('videos_topic_progress', function (Blueprint $table) {
+        Schema::create('user_practices', function (Blueprint $table) {
             $table->id();
+            $table->integer('correct_answer');
+            $table->integer('wrong_answer');
             $table->dateTime('completed_at');
-            $table->foreignId('video_topics_id')->constrained();
-            $table->foreignId('users_id')->constrained();
+            $table->foreignId('practice_sets_id')->constrained();
+            $table->biginteger('users_id');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos_topic_progress');
+        Schema::dropIfExists('user_practices');
     }
 };
