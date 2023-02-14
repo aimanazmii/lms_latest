@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->dateTime('completed_at');
             $table->foreignId('video_topics_id')->constrained();
-            $table->foreignId('users_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

@@ -15,6 +15,20 @@ return new class extends Migration
     {
         Schema::create('user_practices_answers', function (Blueprint $table) {
             $table->id();
+            $table->integer('position');
+            $table->char('question_type');
+            $table->text('question');
+            $table->char('answer_1_type');
+            $table->text('answer_1');
+            $table->char('answer_2_type');
+            $table->text('answer_2');
+            $table->integer('answer_3_type');
+            $table->integer('answer_3');
+            $table->char('answer_4_type');
+            $table->integer('answer_4');
+            $table->integer('answer');
+            $table->integer('correct_answer');
+            $table->foreignId('user_practices_id')->constrained();
             $table->timestamps();
         });
     }
